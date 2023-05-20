@@ -97,15 +97,12 @@ export function Home() {
       <Content>
         <Section title="Minhas notas">
           {notes.map((note) => (
-            <Note
-              key={String(note.id)}
-              data={note}
-            />
+            <Note key={String(note.id)} data={note} onClick={() => handleDetails(note.id)} />
           ))}
         </Section>
       </Content>
 
-      <NewNote to="/new"> 
+      <NewNote to="/new">
         <FiPlus />
         Criar Nota
       </NewNote>
