@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { Container, Form, Avatar } from "./style";
 
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../hooks/auth";
 
@@ -28,6 +28,12 @@ export function Profile() {
   const [avatar, setAvatar] = useState(avatarUrl);
   const [avatarFile, setAvatarFile] = useState(null);
 
+  const navigate = useNavigate();
+
+  function handleBack(){
+    navigate(-1);
+  }
+
   async function handleUpdate(){
     const updated = {
       name, 
@@ -52,17 +58,14 @@ export function Profile() {
   return (
     <Container>
       <header>
-        <Link to="/">
-          <FiArrowLeft />
-        </Link>
+        <button type="button" onClick={handleBack}>
+          <FiArrowLeft size={24} />
+        </button>
       </header>
 
       <Form>
         <Avatar>
-          <img
-            src={avatar}
-            alt="Foto do usuário"
-          />
+          <img src={avatar} alt="Foto do usuário" />
 
           <label htmlFor="avatar">
             <FiCamera />
@@ -76,26 +79,26 @@ export function Profile() {
           type="text"
           icon={FiUser}
           value={name}
-          onChange={e => setName(e.target.value)}
+          onChange={(e) => setName(e.target.value)}
         />
         <Input
           placeholder="Email"
           type="text"
           icon={FiMail}
           value={email}
-          onChange={e => setEmail(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <Input
           placeholder="Senha atual"
           type="password"
           icon={FiLock}
-          onChange={e => setPasswordOld(e.target.value)}
+          onChange={(e) => setPasswordOld(e.target.value)}
         />
         <Input
           placeholder="Nova senha"
           type="password"
           icon={FiLock}
-          onChange={e => setPasswordNew(e.target.value)}
+          onChange={(e) => setPasswordNew(e.target.value)}
         />
 
         <Button title="Salvar" onClick={handleUpdate} />
