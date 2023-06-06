@@ -4,7 +4,7 @@ import { api } from "../../services/api";
 import { Header } from "../../components/header";
 import { Input } from "../../components/input";
 import { Textarea } from "../../components/Textarea";
-import { NoteItem } from "../../components/NoteItem";
+import { NoteItem } from "../../components/noteItem";
 import { Section } from "../../components/section";
 import { Button } from "../../components/button";
 import { ButtonText } from "../../components/buttonText";
