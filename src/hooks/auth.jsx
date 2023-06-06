@@ -8,6 +8,7 @@ function AuthProvider({ children}) {
   const [data, setData] = useState({})
 
   async function signIn({email, password }) {
+    
     try{
       const response = await api.post("/sessions", { email, password });
       const { user, token } = response.data;
@@ -16,8 +17,8 @@ function AuthProvider({ children}) {
       localStorage.setItem("@rocketnotes:token", token);
       
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-
       setData({ user, token });
+
     } catch (error) {
       if(error.response){
         alert(error.response.data.message);
@@ -36,7 +37,6 @@ function AuthProvider({ children}) {
 
   async function updateProfile({ user, avatarFile }) {
     try{
-
       if(avatarFile){
         const fileUploadForm = new FormData();
         fileUploadForm.append("avatar", avatarFile);
@@ -68,8 +68,8 @@ function AuthProvider({ children}) {
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
       setData({
-        user, 
-        token: JSON.parse(user) 
+        token, 
+        user: JSON.parse(user) 
       });
     }
   }, []);
